@@ -29,15 +29,46 @@
           </ul>
         </div>
       </div>
-      <div class="col-8">
-        <input class="note-title" placeholder="Note Title" maxlength="28" type="text">
+      <div class="col-8 ">
+        <input id ="notesTitle" class="note-title" placeholder="Note Title" maxlength="28" type="text">
         <br>
-        <textarea class="note-textarea" placeholder="Note Text"></textarea>
+        <textarea id ="notesText" class="note-textarea" placeholder="Note Text"></textarea>
+        <hr>
+        <button type="submit" class="btn btn-primary submit">Submit</button>
+
       </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/assets/js/index.js"></script>
+  <script type ="text/javascript">
+    $(".submit").on("click",(event)=>{
+      event.preventDefault();
+
+      var addNote={
+        Title:$("#notesTitle").val().trim(),
+        Text:$("#notesText").val().trim(),
+        id:""
+      };
+      console.log(addNote);
+
+      $.post("/api/notes",addNote,(data)=>{
+        if(data){
+          alert("Note added to notebook.")
+        }else{
+          alert("Something has gone horribly wrong!")
+        }
+        $("#notesTitle").val()="";
+        $("#notesText").val()="";
+
+      });
+
+
+
+
+
+    })
+  </script>
 </body>
 
 </html>
