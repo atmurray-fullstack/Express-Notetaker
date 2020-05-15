@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const fs = require('fs');
-const PORT = 8080;
+var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('Develop/public'));
@@ -59,7 +59,7 @@ app.delete('/api/notes/:id', (req, res) => {
             return
         } else {
             let notes = JSON.parse(data);
-            let noteReturn = notes.slice(parseInt(id),parseInt(id)+1);
+            let noteReturn = notes.slice(parseInt(id), parseInt(id) + 1);
             console.log(noteReturn)
             notes.splice(parseInt(id), 1);
             notes.forEach((obj, ind) => {
@@ -77,9 +77,9 @@ app.delete('/api/notes/:id', (req, res) => {
             })
             res.send(noteReturn);
         }
-        
+
     })
-    
+
 });
 
 
