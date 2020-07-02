@@ -60,13 +60,14 @@ app.delete('/api/notes/:id', (req, res) => {
         } else {
             let notes = JSON.parse(data);
             let noteReturn = notes.slice(parseInt(id), parseInt(id) + 1);
-            console.log(noteReturn)
+            console.log(noteReturn);
+
             notes.splice(parseInt(id), 1);
             notes.forEach((obj, ind) => {
                 obj.id = ind;
             });
 
-            console.log(notes);
+            
             let noteString = JSON.stringify(notes);
             fs.writeFile(path.join(__dirname, 'Develop/db/db.json'), noteString, (err) => {
                 if (err) {

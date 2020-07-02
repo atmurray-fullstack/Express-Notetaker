@@ -44,29 +44,6 @@
   <script src = "assets/js/index.js"></script>
   <script type="text/javascript">
     
-    $(".submit").on("click", (event) => {
-      event.preventDefault();
-
-      var addNote = {
-        Title: $("#notesTitle").val().trim(),
-        Text: $("#notesText").val().trim(),
-        id: ""
-      };
-      $.post("/api/notes", addNote, (data) => {
-        if (data) {
-          alert("Note added to notebook.")
-        } else {
-          alert("Something has gone horribly wrong!")
-        }
-        $("#notesTitle").val("");
-        $("#notesText").val("")
-      });
-
-
-
-
-
-    })
   </script>
 </body>
 
